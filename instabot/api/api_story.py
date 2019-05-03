@@ -60,13 +60,13 @@ def upload_story_photo(self, photo, upload_id=None):
 
     if response.status_code == 200:
         upload_id = json.loads(response.text).get('upload_id')
-        if self.configure_story(upload_id, photo):
+        if self.configure_story_photo(upload_id, photo):
             # self.expose()
             return True
     return False
 
 
-def configure_story(self, upload_id, photo):
+def configure_story_photo(self, upload_id, photo):
     (w, h) = get_image_size(photo)
     data = self.json_data({
         'source_type': 4,

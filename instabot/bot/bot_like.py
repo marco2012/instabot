@@ -191,3 +191,34 @@ def like_location_feed(self, place, amount):
         else:
             self.logger.error(" '{}' does not seem to have pictures. Select a different location.".format(place))
             return False
+
+
+def like_self_story_viewers(self, amount_of_users_to_like=None):
+    self.logger.info("Getting your stories...")
+    reel = self.get_user_reel(self.user_id)  # get story info
+    stories = reel.get("items")
+    if not stories:
+        self.logger.error("Publish at least a story first!")
+        return False
+    story = stories[0]
+    story_id = story.get("pk")
+    user_ids = []
+    max_id = ''
+    counter = 0
+    self.logger.info("Getting your story viewers...")
+    viewers = self.get_self_story_viewers(story_id, max_id)
+    user_count = viewers.get('user_count')
+    if not user_count or user_count == 0:
+        self.logger.error("Nobody has seen your story yet")
+        return False
+    while counter <= user_count:
+        current_user_ids = map(lambda x: x["pk"], viewers.get('users'))
+        user_ids.extend(current_user_ids)
+        counter += len(viewers.get('users'))
+        max_id = viewers.get('next_max_id')
+        if counter > user_count:
+            break
+        viewers = self.get_self_story_viewers(story_id, max_id)
+    user_ids = list(set(user_ids))  # remove duplicates and trim list
+    self.logger.info("Found {} users that viewed your story".format(user_ids))
+    return self.like_users(user_ids[:amount_of_users_to_like], nlikes=1, filtration=True)

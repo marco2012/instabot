@@ -29,8 +29,8 @@ def get_user_stories(self, user_id):
         return [], []
 
 
-def get_self_story_viewers(self, story_id):
-    self.api.get_self_story_viewers(story_id)
+def get_self_story_viewers(self, story_pk, max_id=''):
+    self.api.get_self_story_viewers(story_pk, max_id)
     return self.api.last_json
 
 

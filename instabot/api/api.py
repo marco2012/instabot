@@ -21,7 +21,7 @@ from tqdm import tqdm
 from . import config, devices
 from .api_photo import configure_photo, download_photo, upload_photo
 from .api_video import configure_video, download_video, upload_video
-from .api_story import download_story, upload_story_photo, configure_story
+from .api_story import download_story, upload_story_photo, configure_story_photo
 from .prepare import delete_credentials, get_credentials
 
 PY2 = sys.version_info[0] == 2
@@ -323,8 +323,8 @@ class API(object):
     def upload_story_photo(self, photo, upload_id=None):
         return upload_story_photo(self, photo, upload_id)
 
-    def configure_story(self, upload_id, photo):
-        return configure_story(self, upload_id, photo)
+    def configure_story_photo(self, upload_id, photo):
+        return configure_story_photo(self, upload_id, photo)
 
     def upload_video(self, photo, caption=None, upload_id=None):
         return upload_video(self, photo, caption, upload_id)
@@ -902,10 +902,14 @@ class API(object):
         url = 'feed/user/{}/story/'.format(user_id)
         return self.send_request(url)
 
-    def get_self_story_viewers(self, story_id):
-
-        url = 'media/{}/list_reel_media_viewer/?supported_capabilities_new={}'.format(story_id,
-                                                                                      config.SUPPORTED_CAPABILITIES)
+    def get_self_story_viewers(self, story_pk, max_id=''):
+        if max_id == '':
+            url = 'media/{}/list_reel_media_viewer/?supported_capabilities_new={}'.format(
+                story_pk, config.SUPPORTED_CAPABILITIES)
+        else:
+            url = 'media/{story_pk}/list_reel_media_viewer/?max_id={max_id}'.format(
+                story_pk=story_pk,
+                max_id=max_id)
         return self.send_request(url)
 
     def get_tv_suggestions(self):
