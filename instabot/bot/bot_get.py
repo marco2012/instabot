@@ -10,6 +10,8 @@ from tqdm import tqdm
 
 def get_user_stories(self, user_id):
     self.api.get_user_stories(user_id)
+    if not self.api.last_json.get("reel"):
+        return [], []
     try:
         if int(self.api.last_json["reel"]["media_count"]) > 0:
             list_image = []

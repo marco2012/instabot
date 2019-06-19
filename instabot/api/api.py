@@ -21,7 +21,7 @@ from tqdm import tqdm
 from . import config, devices
 from .api_photo import configure_photo, download_photo, upload_photo
 from .api_video import configure_video, download_video, upload_video
-from .api_story import download_story, upload_story_photo, configure_story_photo
+from .api_story import download_story, upload_story_photo, configure_story_photo, upload_story_video, configure_story_video
 from .prepare import delete_credentials, get_credentials
 
 PY2 = sys.version_info[0] == 2
@@ -325,6 +325,12 @@ class API(object):
 
     def configure_story_photo(self, upload_id, photo):
         return configure_story_photo(self, upload_id, photo)
+
+    def upload_story_video(self, video, upload_id=None):
+        return upload_story_video(self, video, upload_id)
+
+    def configure_story_video(self, upload_id, thumbnail, width, height, duration):
+        return configure_story_video(self, upload_id, thumbnail, width, height, duration)
 
     def upload_video(self, photo, caption=None, upload_id=None):
         return upload_video(self, photo, caption, upload_id)

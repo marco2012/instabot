@@ -21,3 +21,13 @@ def upload_story_photo(self, photo, upload_id=None):
         return True
     self.logger.info("Photo '{}' is not uploaded.".format(photo))
     return False
+
+
+def upload_story_video(self, video):
+    self.small_delay()
+    self.logger.info("Started uploading '{}'".format(video))
+    if not self.api.upload_story_video(video):
+        self.logger.error("Video '{}' NOT uploaded as story.".format(video))
+        return False
+    self.logger.info("Video '{video}' uploaded as story".format(video=video))
+    return True
