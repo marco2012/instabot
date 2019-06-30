@@ -1,14 +1,25 @@
 import os
 
 
-def upload_video(self, video, caption=''):
+def upload_video(self, video, caption='', thumbnail=None, options={}):
+    """Upload video to Instagram
+
+    @param video      Path to video file (String)
+    @param caption    Media description (String)
+    @param thumbnail  Path to thumbnail for video (String). When None, then thumbnail is generate automatically
+    @param options    Object with difference options, e.g. configure_timeout, rename_thumbnail, rename (Dict)
+                      Designed to reduce the number of function arguments!
+
+    @return           Object with state of uploading to Instagram (or False)
+    """
     self.small_delay()
     self.logger.info("Started uploading '{video}'".format(video=video))
-    if not self.api.upload_video(video, caption):
+    result = self.api.upload_video(video, caption=caption, thumbnail=thumbnail, options=options)
+    if not result:
         self.logger.info("Video '%s' is not %s ." % (video, 'uploaded'))
         return False
     self.logger.info("Video '{video}' uploaded".format(video=video))
-    return True
+    return result
 
 
 def download_video(self, media_id, folder='videos', filename=None, save_description=False):
