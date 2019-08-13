@@ -971,22 +971,11 @@ class API(object):
         url = 'feed/user/{}/story/'.format(user_id)
         return self.send_request(url)
 
-<<<<<<< HEAD
-    def get_self_story_viewers(self, story_pk, max_id=''):
-        if max_id == '':
-            url = 'media/{}/list_reel_media_viewer/?supported_capabilities_new={}'.format(
-                story_pk, config.SUPPORTED_CAPABILITIES)
-        else:
-            url = 'media/{story_pk}/list_reel_media_viewer/?max_id={max_id}'.format(
-                story_pk=story_pk,
-                max_id=max_id)
-=======
     def get_self_story_viewers(self, story_id):
         url = 'media/{}/list_reel_media_viewer/?supported_capabilities_new={}'.format(
             story_id,
             config.SUPPORTED_CAPABILITIES
         )
->>>>>>> upstream/master
         return self.send_request(url)
 
     def get_tv_suggestions(self):

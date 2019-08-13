@@ -16,33 +16,6 @@ from .bot_comment import (
     is_commented, reply_to_comment
 )
 from .bot_delete import delete_comment, delete_media, delete_medias
-<<<<<<< HEAD
-from .bot_direct import (send_hashtag, send_like, send_media, send_medias,
-                         send_message, send_messages, send_profile)
-from .bot_filter import check_media, check_not_bot, check_user, filter_medias
-from .bot_follow import (follow, follow_followers, follow_following,
-                         follow_users, approve_pending_follow_requests, reject_pending_follow_requests)
-from .bot_get import (convert_to_user_id, get_archived_medias, get_comment,
-                      get_comment_likers, get_geotag_medias, get_geotag_users,
-                      get_hashtag_medias, get_hashtag_users,
-                      get_last_user_medias, get_locations_from_coordinates,
-                      get_media_commenters, get_media_comments,
-                      get_media_comments_all, get_media_id_from_link,
-                      get_link_from_media_id, get_media_info, get_media_likers,
-                      get_media_owner, get_messages, get_popular_medias,
-                      get_timeline_medias, get_timeline_users,
-                      get_total_hashtag_medias, get_total_user_medias,
-                      get_user_followers, get_user_following,
-                      get_user_id_from_username, get_user_info,
-                      get_user_likers, get_user_medias, get_user_tags_medias,
-                      get_username_from_user_id, get_your_medias, search_users,
-                      get_user_stories, get_user_reel, get_self_story_viewers,
-                      get_pending_follow_requests)
-from .bot_like import (like, like_comment, like_followers, like_following,
-                       like_geotag, like_hashtag, like_media_comments,
-                       like_medias, like_timeline, like_user, like_users,
-                       like_location_feed, like_self_story_viewers)
-=======
 from .bot_direct import (
     send_hashtag, send_like, send_media, send_medias,
     send_message, send_messages, send_profile, send_photo,
@@ -78,7 +51,6 @@ from .bot_like import (
     like_geotag, like_hashtag, like_media_comments,
     like_medias, like_timeline, like_user, like_users, like_location_feed
 )
->>>>>>> upstream/master
 from .bot_photo import download_photo, download_photos, upload_photo
 from .bot_stats import save_user_stats
 from .bot_support import (
@@ -94,13 +66,9 @@ from .bot_unlike import (
     unlike_medias, unlike_user
 )
 from .bot_video import upload_video, download_video
-<<<<<<< HEAD
-from .bot_story import download_stories, upload_story_photo, upload_story_video
-=======
 from .bot_story import (
     download_stories, upload_story_photo, watch_users_reels
 )
->>>>>>> upstream/master
 
 
 class Bot(object):

@@ -23,16 +23,6 @@ def upload_story_photo(self, photo, upload_id=None):
     return False
 
 
-<<<<<<< HEAD
-def upload_story_video(self, video):
-    self.small_delay()
-    self.logger.info("Started uploading '{}'".format(video))
-    if not self.api.upload_story_video(video):
-        self.logger.error("Video '{}' NOT uploaded as story.".format(video))
-        return False
-    self.logger.info("Video '{video}' uploaded as story".format(video=video))
-    return True
-=======
 def watch_users_reels(self, user_ids, max_users=100):
     """
         user_ids - the list of user_id to get their stories
@@ -67,4 +57,3 @@ def watch_users_reels(self, user_ids, max_users=100):
         self.total["stories_viewed"] += len(unseen_reels)
         return True
     return False
->>>>>>> upstream/master
